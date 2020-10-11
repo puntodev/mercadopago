@@ -1,0 +1,55 @@
+{
+    "name": "puntodev/mercadopago",
+    "description": "MercadoPago API Client",
+    "keywords": [
+        "puntodev",
+        "mercadopago"
+    ],
+    "homepage": "https://github.com/puntodev/mercadopago",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Mariano Goldman",
+            "email": "mariano.goldman@puntodev.com.ar",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4",
+        "guzzlehttp/guzzle": "^7.0",
+        "illuminate/support": "^8.0",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Puntodev\\Payments\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Puntodev\\Payments\\MercadoPagoServiceProvider"
+            ],
+            "aliases": {
+                "MercadoPago": "Puntodev\\Payments\\MercadoPagoFacade"
+            }
+        }
+    }
+}
