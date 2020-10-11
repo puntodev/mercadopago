@@ -6,7 +6,7 @@ namespace Puntodev\Payments;
 
 use Carbon\Carbon;
 
-class OrderBuilder
+class PaymentPreferenceBuilder
 {
     const MP_DATE_TIME_FORMAT = 'Y-m-d\TH:i:s.000P';
 
@@ -31,15 +31,15 @@ class OrderBuilder
 
     /**
      * @param string $externalId
-     * @return OrderBuilder
+     * @return PaymentPreferenceBuilder
      */
-    public function externalId(string $externalId): OrderBuilder
+    public function externalId(string $externalId): PaymentPreferenceBuilder
     {
         $this->externalId = $externalId;
         return $this;
     }
 
-    public function currency(string $currency): OrderBuilder
+    public function currency(string $currency): PaymentPreferenceBuilder
     {
         $this->currency = $currency;
         return $this;
@@ -47,9 +47,9 @@ class OrderBuilder
 
     /**
      * @param int $amount
-     * @return OrderBuilder
+     * @return PaymentPreferenceBuilder
      */
-    public function amount(int $amount): OrderBuilder
+    public function amount(int $amount): PaymentPreferenceBuilder
     {
         $this->amount = $amount;
         return $this;
@@ -57,9 +57,9 @@ class OrderBuilder
 
     /**
      * @param string $description
-     * @return OrderBuilder
+     * @return PaymentPreferenceBuilder
      */
-    public function description(string $description): OrderBuilder
+    public function description(string $description): PaymentPreferenceBuilder
     {
         $this->description = $description;
         return $this;
@@ -67,9 +67,9 @@ class OrderBuilder
 
     /**
      * @param string $payerFirstName
-     * @return OrderBuilder
+     * @return PaymentPreferenceBuilder
      */
-    public function payerFirstName(string $payerFirstName): OrderBuilder
+    public function payerFirstName(string $payerFirstName): PaymentPreferenceBuilder
     {
         $this->payerFirstName = $payerFirstName;
         return $this;
@@ -77,9 +77,9 @@ class OrderBuilder
 
     /**
      * @param string $payerLastName
-     * @return OrderBuilder
+     * @return PaymentPreferenceBuilder
      */
-    public function payerLastName(string $payerLastName): OrderBuilder
+    public function payerLastName(string $payerLastName): PaymentPreferenceBuilder
     {
         $this->payerLastName = $payerLastName;
         return $this;
@@ -87,9 +87,9 @@ class OrderBuilder
 
     /**
      * @param string $payerEmail
-     * @return OrderBuilder
+     * @return PaymentPreferenceBuilder
      */
-    public function payerEmail(string $payerEmail): OrderBuilder
+    public function payerEmail(string $payerEmail): PaymentPreferenceBuilder
     {
         $this->payerEmail = $payerEmail;
         return $this;
@@ -97,9 +97,9 @@ class OrderBuilder
 
     /**
      * @param array $excludedPaymentMethods
-     * @return OrderBuilder
+     * @return PaymentPreferenceBuilder
      */
-    public function excludedPaymentMethods(array $excludedPaymentMethods): OrderBuilder
+    public function excludedPaymentMethods(array $excludedPaymentMethods): PaymentPreferenceBuilder
     {
         $this->excludedPaymentMethods = $excludedPaymentMethods;
         return $this;
@@ -107,9 +107,9 @@ class OrderBuilder
 
     /**
      * @param string $returnUrl
-     * @return OrderBuilder
+     * @return PaymentPreferenceBuilder
      */
-    public function returnUrl(string $returnUrl): OrderBuilder
+    public function returnUrl(string $returnUrl): PaymentPreferenceBuilder
     {
         $this->returnUrl = $returnUrl;
         return $this;
@@ -117,9 +117,9 @@ class OrderBuilder
 
     /**
      * @param string $notificationUrl
-     * @return OrderBuilder
+     * @return PaymentPreferenceBuilder
      */
-    public function notificationUrl(string $notificationUrl): OrderBuilder
+    public function notificationUrl(string $notificationUrl): PaymentPreferenceBuilder
     {
         $this->notificationUrl = $notificationUrl;
         return $this;
@@ -127,9 +127,9 @@ class OrderBuilder
 
     /**
      * @param bool $binaryMode
-     * @return OrderBuilder
+     * @return PaymentPreferenceBuilder
      */
-    public function binaryMode(bool $binaryMode): OrderBuilder
+    public function binaryMode(bool $binaryMode): PaymentPreferenceBuilder
     {
         $this->binaryMode = $binaryMode;
         return $this;

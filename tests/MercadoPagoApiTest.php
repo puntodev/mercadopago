@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\Client\RequestException;
 use Illuminate\Support\Facades\Log;
 use Puntodev\Payments\MercadoPagoApi;
-use Puntodev\Payments\OrderBuilder;
+use Puntodev\Payments\PaymentPreferenceBuilder;
 
 class MercadoPagoApiTest extends TestCase
 {
@@ -38,7 +38,7 @@ class MercadoPagoApiTest extends TestCase
      */
     public function testCreateOrder()
     {
-        $order = (new OrderBuilder())
+        $order = (new PaymentPreferenceBuilder())
             ->description('My custom product')
             ->amount(23)
             ->currency('ARS')
