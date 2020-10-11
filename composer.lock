@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "07f827a2ab1ac67f5a1a751324de0c93",
+    "content-hash": "609f337e1595cfcc8b1a5bb190c4a877",
     "packages": [
         {
             "name": "brick/math",
@@ -859,7 +859,7 @@
                     "type": "custom"
                 },
                 {
-                    "url": "https://www.mercadoPago.me/colinpodell/10.00",
+                    "url": "https://www.paypal.me/colinpodell/10.00",
                     "type": "custom"
                 },
                 {
@@ -4306,7 +4306,7 @@
             ],
             "funding": [
                 {
-                    "url": "https://www.mercadoPago.me/moelleken",
+                    "url": "https://www.paypal.me/moelleken",
                     "type": "custom"
                 },
                 {
@@ -4721,7 +4721,7 @@
             ],
             "funding": [
                 {
-                    "url": "https://mercadoPago.me/crynobone",
+                    "url": "https://paypal.me/crynobone",
                     "type": "custom"
                 },
                 {
@@ -4801,7 +4801,7 @@
             ],
             "funding": [
                 {
-                    "url": "https://mercadoPago.me/crynobone",
+                    "url": "https://paypal.me/crynobone",
                     "type": "custom"
                 },
                 {

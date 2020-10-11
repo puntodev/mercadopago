@@ -21,9 +21,6 @@ class MercadoPagoApi
     /** @var string */
     private string $host;
 
-    /** @var string */
-    private string $ipnUrl;
-
     /** @var bool */
     private bool $useSandbox;
 
@@ -46,75 +43,79 @@ class MercadoPagoApi
      * @return array
      * @throws RequestException
      */
-    public function createOrder(array $order): array
+    public function createPaymentPreference(array $order): array
     {
         $token = $this->getToken();
-        return Http::withOptions([
-            RequestOptions::QUERY => [
-                'access_token' => $token['access_token']
-            ],
-        ])
+        return Http::withToken($token['access_token'])
             ->post("https://{$this->host}/checkout/preferences", $order)
             ->throw()
             ->json();
     }
 
-//    /**
-//     * @param string $id
-//     * @return array|null
-//     * @throws RequestException
-//     */
-//    public function findOrderById(string $id): ?array
-//    {
-//        $token = $this->getToken();
-//        return Http::withToken($token['access_token'])
-//            ->get("https://{$this->host}/v2/checkout/orders/$id")
-//            ->throw()
-//            ->json();
-//    }
-//
-//    /**
-//     * @param string $orderId
-//     * @return array|null
-//     * @throws RequestException
-//     */
-//    public function captureOrder(string $orderId): ?array
-//    {
-//        $token = $this->getToken();
-//        return Http::withToken($token['access_token'])
-//            ->withHeaders([
-//                'Prefer' => 'return=representation',
-//            ])
-//            ->withBody(null, 'application/json')
-//            ->post("https://{$this->host}/v2/checkout/orders/$orderId/capture", [])
-//            ->throw()
-//            ->json();
-//    }
-//
-//    /**
-//     * @param string $querystring
-//     * @return string
-//     * @throws RequestException
-//     */
-//    public function verifyIpn(string $querystring)
-//    {
-//        return Http::withHeaders([
-//            'User-Agent' => 'PHP-IPN-Verification-Script',
-//            'Connection' => 'Close',
-//        ])
-//            ->withoutRedirecting()
-//            ->withBody('cmd=_notify-validate&' . $querystring, 'application/x-www-form-urlencoded')
-//            ->post($this->ipnUrl)
-//            ->throw()
-//            ->body();
-//    }
+    /**
+     * @param array $query
+     * @return array|null
+     * @throws RequestException
+     */
+    public function findMerchantOrders(array $query = []): ?array
+    {
+        $token = $this->getToken();
+        return Http::withToken($token['access_token'])
+            ->withOptions([RequestOptions::QUERY => $query])
+            ->get("https://{$this->host}/merchant_orders")
+            ->throw()
+            ->json();
+    }
+
+    /**
+     * @param string $id
+     * @return array|null
+     * @throws RequestException
+     */
+    public function findMerchantOrderById(string $id): ?array
+    {
+        $token = $this->getToken();
+        return Http::withToken($token['access_token'])
+            ->get("https://{$this->host}/merchant_orders/$id")
+            ->throw()
+            ->json();
+    }
+
+    /**
+     * @param array $query
+     * @return array|null
+     * @throws RequestException
+     */
+    public function findPayments(array $query = []): ?array
+    {
+        $token = $this->getToken();
+        return Http::withToken($token['access_token'])
+            ->withOptions([RequestOptions::QUERY => $query])
+            ->get("https://{$this->host}/v1/payments/search")
+            ->throw()
+            ->json();
+    }
+
+    /**
+     * @param string $id
+     * @return array|null
+     * @throws RequestException
+     */
+    public function findPaymentById(string $id): ?array
+    {
+        $token = $this->getToken();
+        return Http::withToken($token['access_token'])
+            ->get("https://{$this->host}/v1/payments/$id")
+            ->throw()
+            ->json();
+    }
 
     /**
      * @return array
      */
     private function getToken(): array
     {
-        return Cache::remember("mercadoPago-token-{$this->apiClientKey}", 1000, function () {
+        return Cache::remember("mercadopago-token-{$this->apiClientKey}", 1000, function () {
             Log::debug('Obtaining MercadoPago token from live server');
             return Http::withBasicAuth($this->apiClientKey, $this->apiClientSecret)
                 ->asJson()

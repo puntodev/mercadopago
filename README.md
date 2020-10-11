@@ -1,6 +1,6 @@
 # Very short description of the package
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/puntodev/mercadoPago.svg?style=flat-square)](https://packagist.org/packages/puntodev/mercadoPago)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/puntodev/mercadopago.svg?style=flat-square)](https://packagist.org/packages/puntodev/mercadoPago)
 [![Build Status](https://img.shields.io/travis/puntodev/mercadoPago/master.svg?style=flat-square)](https://travis-ci.org/puntodev/mercadoPago)
 [![Quality Score](https://img.shields.io/scrutinizer/g/puntodev/mercadoPago.svg?style=flat-square)](https://scrutinizer-ci.com/g/puntodev/mercadoPago)
 [![Total Downloads](https://img.shields.io/packagist/dt/puntodev/mercadoPago.svg?style=flat-square)](https://packagist.org/packages/puntodev/mercadoPago)
@@ -12,7 +12,7 @@ This is where your description should go. Try and limit it to a paragraph or two
 You can install the package via composer:
 
 ```bash
-composer require puntodev/mercadoPago
+composer require puntodev/mercadopago
 ```
 
 ## Usage
@@ -41,7 +41,7 @@ If you discover any security related issues, please email mariano.goldman@puntod
 
 ## Credits
 
-- [Mariano Goldman](https://github.com/puntodev)
+- [Mariano Goldman](https://github.com/marianogoldman)
 - [All Contributors](../../contributors)
 
 ## License
