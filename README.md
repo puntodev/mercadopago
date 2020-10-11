@@ -1,9 +1,9 @@
 # Very short description of the package
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/puntodev/mercadopago.svg?style=flat-square)](https://packagist.org/packages/puntodev/mercadoPago)
-[![Build Status](https://img.shields.io/travis/puntodev/mercadoPago/master.svg?style=flat-square)](https://travis-ci.org/puntodev/mercadoPago)
-[![Quality Score](https://img.shields.io/scrutinizer/g/puntodev/mercadoPago.svg?style=flat-square)](https://scrutinizer-ci.com/g/puntodev/mercadoPago)
-[![Total Downloads](https://img.shields.io/packagist/dt/puntodev/mercadoPago.svg?style=flat-square)](https://packagist.org/packages/puntodev/mercadoPago)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/puntodev/mercadopago.svg?style=flat-square)](https://packagist.org/packages/puntodev/mercadopago)
+[![Build Status](https://img.shields.io/travis/puntodev/mercadopago/master.svg?style=flat-square)](https://travis-ci.org/puntodev/mercadopago)
+[![Quality Score](https://img.shields.io/scrutinizer/g/puntodev/mercadopago.svg?style=flat-square)](https://scrutinizer-ci.com/g/puntodev/mercadopago)
+[![Total Downloads](https://img.shields.io/packagist/dt/puntodev/mercadopago.svg?style=flat-square)](https://packagist.org/packages/puntodev/mercadopago)
 
 This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
 
