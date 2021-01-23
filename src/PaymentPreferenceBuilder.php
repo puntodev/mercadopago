@@ -12,7 +12,7 @@ class PaymentPreferenceBuilder
 
     private string $externalId = '';
     private string $currency = 'ARS';
-    private int $amount = 0;
+    private float $amount = 0;
     private string $description = '';
     private string $payerFirstName = '';
     private string $payerLastName = '';
@@ -46,10 +46,10 @@ class PaymentPreferenceBuilder
     }
 
     /**
-     * @param int $amount
+     * @param float $amount
      * @return PaymentPreferenceBuilder
      */
-    public function amount(int $amount): PaymentPreferenceBuilder
+    public function amount(float $amount): PaymentPreferenceBuilder
     {
         $this->amount = $amount;
         return $this;
@@ -148,7 +148,7 @@ class PaymentPreferenceBuilder
                 [
                     'title' => $this->description,
                     'quantity' => 1,
-                    'unit_price' => $this->amount,
+                    'unit_price' => round($this->amount, 2),
                     'currency' => $this->currency,
                 ]
             ],
