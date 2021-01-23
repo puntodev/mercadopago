@@ -40,7 +40,7 @@ class MercadoPagoApiTest extends TestCase
     {
         $order = (new PaymentPreferenceBuilder())
             ->description('My custom product')
-            ->amount(23)
+            ->amount(23.20)
             ->currency('ARS')
             ->payerFirstName($this->faker->firstName)
             ->payerLastName($this->faker->lastName)
