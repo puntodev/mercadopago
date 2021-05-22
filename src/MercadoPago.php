@@ -21,7 +21,6 @@ class MercadoPago
         return new MercadoPagoApi(
             $clientId,
             $clientSecret,
-            $this->useSandbox
         );
     }
 
@@ -30,7 +29,6 @@ class MercadoPago
         return new MercadoPagoApi(
             $clientId,
             $clientSecret,
-            $this->useSandbox
         );
     }
 
