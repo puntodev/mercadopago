@@ -48,7 +48,7 @@
                 "Puntodev\\Payments\\MercadoPagoServiceProvider"
             ],
             "aliases": {
-                "MercadoPago": "Puntodev\\Payments\\Facades\\MercadoPagoFacade"
+                "MercadoPago": "MercadoPago"
             }
         }
     }

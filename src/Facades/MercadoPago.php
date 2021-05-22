@@ -3,9 +3,9 @@
 namespace Puntodev\Payments\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use Puntodev\Payments\MercadoPago;
+use Puntodev\Payments\MercadoPago as MercadoPagoClass;
 
-class MercadoPagoFacade extends Facade
+class MercadoPago extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -14,6 +14,6 @@ class MercadoPagoFacade extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return MercadoPago::class;
+        return MercadoPagoClass::class;
     }
 }
