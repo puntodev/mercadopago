@@ -4,39 +4,28 @@ namespace Puntodev\MercadoPago;
 
 class MercadoPago
 {
-    /** @var string */
-    private string $clientId;
-
-    /** @var string */
-    private string $clientSecret;
-
-    /** @var bool */
-    private bool $useSandbox;
-
     /**
-     * MercadoPagoApiFactory constructor.
+     * MercadoPago constructor.
      *
-     * @param string $clientId
-     * @param string $clientSecret
      * @param bool $useSandbox
      */
-    public function __construct(string $clientId, string $clientSecret, bool $useSandbox)
+    public function __construct(private bool $useSandbox = false)
     {
-        $this->useSandbox = $useSandbox;
-        $this->clientId = $clientId;
-        $this->clientSecret = $clientSecret;
     }
 
     public function defaultClient(): MercadoPagoApi
     {
+        $clientId = config('mercadopago.client_id');
+        $clientSecret = config('mercadopago.client_secret');
+
         return new MercadoPagoApi(
-            $this->clientId,
-            $this->clientSecret,
+            $clientId,
+            $clientSecret,
             $this->useSandbox
         );
     }
 
-    public function withCredentials($clientId, $clientSecret): MercadoPagoApi
+    public function withCredentials(string $clientId, string $clientSecret): MercadoPagoApi
     {
         return new MercadoPagoApi(
             $clientId,
