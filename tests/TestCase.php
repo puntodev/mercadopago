@@ -3,7 +3,7 @@
 namespace Tests;
 
 use Orchestra\Testbench\TestCase as Orchestra;
-use Puntodev\Payments\MercadoPagoServiceProvider;
+use Puntodev\MercadoPago\MercadoPagoServiceProvider;
 
 abstract class TestCase extends Orchestra
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Puntodev\Payments;
+namespace Puntodev\MercadoPago;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -28,15 +28,9 @@ class MercadoPagoServiceProvider extends ServiceProvider
 
         // Register the main class to use with the facade
         $this->app->singleton(MercadoPago::class, function ($app) {
-            $clientKey = config('mercadopago.client_id');
-            $clientSecret = config('mercadopago.client_secret');
-            $useSandbox = config('mercadopago.use_sandbox');
+            $useSandbox = config('mercadopago.use_sandbox', false);
 
-            return new MercadoPago(
-                $clientKey,
-                $clientSecret,
-                $useSandbox
-            );
+            return new MercadoPago($useSandbox);
         });
         $this->app->alias(MercadoPago::class, 'mercadopago');
     }

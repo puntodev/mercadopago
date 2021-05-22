@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Puntodev\Payments;
+namespace Puntodev\MercadoPago;
 
 
 class PaymentPreferenceItemBuilder

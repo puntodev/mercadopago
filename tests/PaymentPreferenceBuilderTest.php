@@ -3,7 +3,7 @@
 namespace Tests;
 
 use Carbon\Carbon;
-use Puntodev\Payments\PaymentPreferenceBuilder;
+use Puntodev\MercadoPago\PaymentPreferenceBuilder;
 use PHPUnit\Framework\TestCase;
 
 class PaymentPreferenceBuilderTest extends TestCase
