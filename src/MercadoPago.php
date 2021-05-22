@@ -33,4 +33,8 @@ class MercadoPago
             $this->useSandbox
         );
     }
+
+    public function usingSandbox(): bool {
+        return $this->useSandbox;
+    }
 }
