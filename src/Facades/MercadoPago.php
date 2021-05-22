@@ -1,15 +1,15 @@
 <?php
 
-namespace Puntodev\Payments\Facades;
+namespace Puntodev\MercadoPago\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
 
 /**
- * @method static \Puntodev\Payments\MercadoPagoApi defaultClient()
- * @method static \Puntodev\Payments\MercadoPagoApi withCredentials(string $clientId, string $clientSecret)
+ * @method static \Puntodev\MercadoPago\MercadoPagoApi defaultClient()
+ * @method static \Puntodev\MercadoPago\MercadoPagoApi withCredentials(string $clientId, string $clientSecret)
  *
- * @see \Puntodev\Payments\MercadoPago
+ * @see \Puntodev\MercadoPago\MercadoPago
  */
 class MercadoPago extends Facade
 {
@@ -20,6 +20,6 @@ class MercadoPago extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return \Puntodev\Payments\MercadoPago::class;
+        return \Puntodev\MercadoPago\MercadoPago::class;
     }
 }

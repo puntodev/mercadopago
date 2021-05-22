@@ -27,7 +27,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Puntodev\\Payments\\": "src"
+            "Puntodev\\MercadoPago\\": "src"
         }
     },
     "autoload-dev": {
@@ -45,10 +45,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Puntodev\\Payments\\MercadoPagoServiceProvider"
+                "Puntodev\\MercadoPago\\MercadoPagoServiceProvider"
             ],
             "aliases": {
-                "MercadoPago": "Puntodev\\Payments\\Facades\\MercadoPagoFacade"
+                "MercadoPago": "Puntodev\\MercadoPago\\Facades\\MercadoPago"
             }
         }
     }

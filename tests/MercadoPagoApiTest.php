@@ -6,8 +6,8 @@ use Exception;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\Client\RequestException;
 use Illuminate\Support\Facades\Log;
-use Puntodev\Payments\MercadoPagoApi;
-use Puntodev\Payments\PaymentPreferenceBuilder;
+use Puntodev\MercadoPago\MercadoPagoApi;
+use Puntodev\MercadoPago\PaymentPreferenceBuilder;
 
 class MercadoPagoApiTest extends TestCase
 {
@@ -55,7 +55,6 @@ class MercadoPagoApiTest extends TestCase
             ->make();
 
         $createdOrder = $this->mercadoPagoApi->createPaymentPreference($order);
-        Log::debug('Created Order: ', ['createdOrder' => $createdOrder]);
 
         $this->assertEquals($order['payer']['name'], $createdOrder['payer']['name']);
         $this->assertEquals($order['payer']['surname'], $createdOrder['payer']['surname']);

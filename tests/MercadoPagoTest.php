@@ -2,8 +2,8 @@
 
 namespace Tests;
 
-use Puntodev\Payments\MercadoPago;
-use Puntodev\Payments\MercadoPagoApi;
+use Puntodev\MercadoPago\MercadoPago;
+use Puntodev\MercadoPago\MercadoPagoApi;
 
 class MercadoPagoTest extends TestCase
 {
