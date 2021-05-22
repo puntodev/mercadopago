@@ -5,25 +5,28 @@ namespace Puntodev\Payments;
 
 
 use Carbon\Carbon;
+use DateTime;
 
 class PaymentPreferenceBuilder
 {
     const MP_DATE_TIME_FORMAT = 'Y-m-d\TH:i:s.000P';
 
+    private array $items = [];
+
     private string $externalId = '';
-    private string $currency = 'ARS';
-    private float $amount = 0;
-    private string $description = '';
     private string $payerFirstName = '';
     private string $payerLastName = '';
     private string $payerEmail = '';
-    private string $returnUrl = '';
+    private string $successBackUrl = '';
+    private string $pendingBackUrl = '';
+    private string $failureBackUrl = '';
     private string $notificationUrl = '';
+    private DateTime|null $expiration = null;
     private bool $binaryMode = false;
     private array $excludedPaymentMethods = [];
 
     /**
-     * OrderBuilder constructor.
+     * PaymentPreferenceBuilder constructor.
      */
     public function __construct()
     {
@@ -39,30 +42,12 @@ class PaymentPreferenceBuilder
         return $this;
     }
 
-    public function currency(string $currency): PaymentPreferenceBuilder
-    {
-        $this->currency = $currency;
-        return $this;
-    }
-
     /**
-     * @param float $amount
-     * @return PaymentPreferenceBuilder
+     * @return PaymentPreferenceItemBuilder
      */
-    public function amount(float $amount): PaymentPreferenceBuilder
+    public function item(): PaymentPreferenceItemBuilder
     {
-        $this->amount = $amount;
-        return $this;
-    }
-
-    /**
-     * @param string $description
-     * @return PaymentPreferenceBuilder
-     */
-    public function description(string $description): PaymentPreferenceBuilder
-    {
-        $this->description = $description;
-        return $this;
+        return new PaymentPreferenceItemBuilder($this);
     }
 
     /**
@@ -106,12 +91,32 @@ class PaymentPreferenceBuilder
     }
 
     /**
-     * @param string $returnUrl
+     * @param string $successBackUrl
      * @return PaymentPreferenceBuilder
      */
-    public function returnUrl(string $returnUrl): PaymentPreferenceBuilder
+    public function successBackUrl(string $successBackUrl): PaymentPreferenceBuilder
     {
-        $this->returnUrl = $returnUrl;
+        $this->successBackUrl = $successBackUrl;
+        return $this;
+    }
+
+    /**
+     * @param string $pendingBackUrl
+     * @return PaymentPreferenceBuilder
+     */
+    public function pendingBackUrl(string $pendingBackUrl): PaymentPreferenceBuilder
+    {
+        $this->pendingBackUrl = $pendingBackUrl;
+        return $this;
+    }
+
+    /**
+     * @param string $failureBackUrl
+     * @return PaymentPreferenceBuilder
+     */
+    public function failureBackUrl(string $failureBackUrl): PaymentPreferenceBuilder
+    {
+        $this->failureBackUrl = $failureBackUrl;
         return $this;
     }
 
@@ -126,6 +131,16 @@ class PaymentPreferenceBuilder
     }
 
     /**
+     * @param DateTime|null $expiration
+     * @return PaymentPreferenceBuilder
+     */
+    public function expiration(DateTime|null $expiration): PaymentPreferenceBuilder
+    {
+        $this->expiration = $expiration;
+        return $this;
+    }
+
+    /**
      * @param bool $binaryMode
      * @return PaymentPreferenceBuilder
      */
@@ -133,6 +148,11 @@ class PaymentPreferenceBuilder
     {
         $this->binaryMode = $binaryMode;
         return $this;
+    }
+
+    public function addItem(array $item)
+    {
+        $this->items[] = $item;
     }
 
     public function make(): array
@@ -143,15 +163,16 @@ class PaymentPreferenceBuilder
                 ->toArray(),
         ] : [];
 
-        return [
-            'items' => [
-                [
-                    'title' => $this->description,
-                    'quantity' => 1,
-                    'unit_price' => round($this->amount, 2),
-                    'currency' => $this->currency,
-                ]
-            ],
+        $expiration = [
+            'expires' => $this->expiration !== null,
+        ];
+        if ($this->expiration !== null) {
+            $expiration['expiration_date_from'] = Carbon::now()->format(self::MP_DATE_TIME_FORMAT);
+            $expiration['expiration_date_to'] = $this->expiration->format(self::MP_DATE_TIME_FORMAT);
+        }
+
+        return array_merge([
+            'items' => $this->items,
             'payer' => [
                 'name' => $this->payerFirstName,
                 'surname' => $this->payerLastName,
@@ -159,17 +180,14 @@ class PaymentPreferenceBuilder
             ],
             'payment_methods' => $paymentMethods,
             'notification_url' => $this->notificationUrl,
-            'expires' => true,
-            'expiration_date_from' => Carbon::now()->format(self::MP_DATE_TIME_FORMAT),
-            'expiration_date_to' => Carbon::now()->addDays(1)->format(self::MP_DATE_TIME_FORMAT),
             'external_reference' => $this->externalId,
             'back_urls' => [
-                'success' => $this->returnUrl,
-                'pending' => $this->returnUrl,
-                'failure' => $this->returnUrl,
+                'success' => $this->successBackUrl,
+                'pending' => $this->pendingBackUrl ?? $this->successBackUrl,
+                'failure' => $this->failureBackUrl ?? $this->successBackUrl,
             ],
             'auto_return' => 'all',
             'binary_mode' => $this->binaryMode,
-        ];
+        ], $expiration);
     }
 }

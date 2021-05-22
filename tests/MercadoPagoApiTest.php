@@ -39,16 +39,18 @@ class MercadoPagoApiTest extends TestCase
     public function testCreateOrder()
     {
         $order = (new PaymentPreferenceBuilder())
-            ->description('My custom product')
-            ->amount(23.20)
+            ->item()
+            ->title('My custom product')
+            ->unitPrice(23.20)
+            ->quantity(1)
             ->currency('ARS')
+            ->make()
             ->payerFirstName($this->faker->firstName)
             ->payerLastName($this->faker->lastName)
             ->payerEmail($this->faker->safeEmail)
-            ->excludedPaymentMethods(['ticket', 'atm', 'prepaid_card'])
-            ->notificationUrl('http://localhost:8080/mp/ipn/1')
+            ->notificationUrl('https://localhost:8080/mp/ipn/1')
             ->externalId($this->faker->uuid)
-            ->returnUrl('http://localhost:8080/return')
+            ->successBackUrl('https://localhost:8080/return')
             ->binaryMode(true)
             ->make();
 
@@ -65,6 +67,9 @@ class MercadoPagoApiTest extends TestCase
         $this->assertEquals($order['back_urls']['pending'], $createdOrder['back_urls']['pending']);
         $this->assertEquals($order['back_urls']['failure'], $createdOrder['back_urls']['failure']);
         $this->assertTrue($createdOrder['binary_mode']);
+        $this->assertFalse($createdOrder['expires']);
+        $this->assertNull($createdOrder['expiration_date_from']);
+        $this->assertNull($createdOrder['expiration_date_to']);
         $this->assertStringStartsWith('https://sandbox.mercadopago.com.ar/checkout/v1/redirect', $createdOrder['sandbox_init_point']);
         $this->assertStringStartsWith('https://www.mercadopago.com.ar/checkout/v1/redirect', $createdOrder['init_point']);
     }
