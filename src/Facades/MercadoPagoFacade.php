@@ -1,8 +1,9 @@
 <?php
 
-namespace Puntodev\Payments;
+namespace Puntodev\Payments\Facades;
 
 use Illuminate\Support\Facades\Facade;
+use Puntodev\Payments\MercadoPago;
 
 class MercadoPagoFacade extends Facade
 {
