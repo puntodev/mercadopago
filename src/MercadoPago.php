@@ -27,7 +27,7 @@ class MercadoPago
         $this->clientSecret = $clientSecret;
     }
 
-    public function defaultClient()
+    public function defaultClient(): MercadoPagoApi
     {
         return new MercadoPagoApi(
             $this->clientId,
@@ -36,7 +36,7 @@ class MercadoPago
         );
     }
 
-    public function withCredentials($clientId, $clientSecret)
+    public function withCredentials($clientId, $clientSecret): MercadoPagoApi
     {
         return new MercadoPagoApi(
             $clientId,
