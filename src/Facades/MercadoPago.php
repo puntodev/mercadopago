@@ -3,8 +3,14 @@
 namespace Puntodev\Payments\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use Puntodev\Payments\MercadoPago as MercadoPagoClass;
 
+
+/**
+ * @method static \Puntodev\Payments\MercadoPagoApi defaultClient()
+ * @method static \Puntodev\Payments\MercadoPagoApi withCredentials(string $clientId, string $clientSecret)
+ *
+ * @see \Puntodev\Payments\MercadoPago
+ */
 class MercadoPago extends Facade
 {
     /**
@@ -14,6 +20,6 @@ class MercadoPago extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return MercadoPagoClass::class;
+        return \Puntodev\Payments\MercadoPago::class;
     }
 }
