@@ -5,7 +5,6 @@ namespace Tests;
 use Exception;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\Client\RequestException;
-use Illuminate\Support\Facades\Log;
 use Puntodev\MercadoPago\MercadoPagoApi;
 use Puntodev\MercadoPago\PaymentPreferenceBuilder;
 
@@ -21,7 +20,6 @@ class MercadoPagoApiTest extends TestCase
         $this->mercadoPagoApi = new MercadoPagoApi(
             config('mercadopago.client_id'),
             config('mercadopago.client_secret'),
-            config('mercadopago.use_sandbox')
         );
     }
 
@@ -29,7 +27,6 @@ class MercadoPagoApiTest extends TestCase
     {
         $app['config']->set('mercadopago.client_id', env('MERCADOPAGO_API_CLIENT_ID'));
         $app['config']->set('mercadopago.client_secret', env('MERCADOPAGO_API_CLIENT_SECRET'));
-        $app['config']->set('mercadopago.use_sandbox', env('SANDBOX_GATEWAYS'));
     }
 
     /**

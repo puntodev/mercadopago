@@ -21,21 +21,16 @@ class MercadoPagoApi
     /** @var string */
     private string $host;
 
-    /** @var bool */
-    private bool $useSandbox;
-
     /**
      * MercadoPagoApi constructor.
      * @param string $apiClientKey
      * @param string $apiClientSecret
-     * @param bool $useSandbox
      */
-    public function __construct(string $apiClientKey, string $apiClientSecret, bool $useSandbox)
+    public function __construct(string $apiClientKey, string $apiClientSecret)
     {
         $this->apiClientKey = $apiClientKey;
         $this->apiClientSecret = $apiClientSecret;
         $this->host = 'api.mercadopago.com';
-        $this->useSandbox = $useSandbox;
     }
 
     /**

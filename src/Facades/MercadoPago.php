@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Facade;
 /**
  * @method static \Puntodev\MercadoPago\MercadoPagoApi defaultClient()
  * @method static \Puntodev\MercadoPago\MercadoPagoApi withCredentials(string $clientId, string $clientSecret)
+ * @method static bool usingSandbox()
  *
  * @see \Puntodev\MercadoPago\MercadoPago
  */

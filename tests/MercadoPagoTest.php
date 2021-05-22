@@ -35,4 +35,15 @@ class MercadoPagoTest extends TestCase
 
         $this->assertInstanceOf(MercadoPagoApi::class, $client);
     }
+
+    /** @test */
+    public function using_sandbox()
+    {
+        /** @var MercadoPago $mercadoPago */
+        $mercadoPago = $this->app->make('mercadopago');
+
+        $usingSandbox = $mercadoPago->usingSandbox();
+
+        $this->assertTrue($usingSandbox);
+    }
 }
