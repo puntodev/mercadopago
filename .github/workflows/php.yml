@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Validate composer.json and composer.lock
       run: composer validate
@@ -37,4 +37,5 @@ jobs:
       env:
           MERCADOPAGO_API_CLIENT_ID: ${{ secrets.MERCADOPAGO_API_CLIENT_ID }}
           MERCADOPAGO_API_CLIENT_SECRET: ${{ secrets.MERCADOPAGO_API_CLIENT_SECRET }}
+          XDEBUG_MODE: coverage
       run: composer run-script test

@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="vendor/autoload.php"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
-         printerClass="NunoMaduro\Collision\Adapters\Phpunit\Printer"
-         colors="true">
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.0/phpunit.xsd" colors="true"
+         cacheDirectory=".phpunit.cache">
     <testsuites>
         <testsuite name="Test Suite">
             <directory>tests</directory>
@@ -13,12 +11,10 @@
         <junit outputFile="./.tmp/test-results/logfile.xml"/>
         <testdoxHtml outputFile="./.tmp/test-results/testdox.html"/>
     </logging>
-
     <php>
         <env name="SANDBOX_GATEWAYS" value="true"/>
     </php>
-
-    <coverage processUncoveredFiles="true">
+    <coverage>
         <include>
             <directory suffix=".php">src</directory>
         </include>
@@ -27,5 +23,4 @@
             <php outputFile="./.tmp/test-results/coverage.serialized"/>
         </report>
     </coverage>
-
 </phpunit>
