@@ -3,13 +3,14 @@
 namespace Tests;
 
 use Carbon\Carbon;
+use PHPUnit\Framework\Attributes\Test;
 use Puntodev\MercadoPago\PaymentPreferenceBuilder;
 use PHPUnit\Framework\TestCase;
 
 class PaymentPreferenceBuilderTest extends TestCase
 {
 
-    /** @test */
+    #[Test]
     public function create_order_with_int_amount()
     {
         $order = (new PaymentPreferenceBuilder())
