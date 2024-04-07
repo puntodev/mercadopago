@@ -12,30 +12,52 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-    - name: Validate composer.json and composer.lock
-      run: composer validate
+      - name: Setup cache environment
+        id: extcache
+        uses: shivammathur/cache-extensions@v1
+        with:
+            php-version: "8.3"
+            extensions: mbstring, dom, fileinfo, intl, gd, imagick, bcmath, soap, zip, pcov
+            key: "extcache"
 
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v2
-      with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
+      - name: Cache extensions
+        uses: actions/cache@v4
+        with:
+            path: ${{ steps.extcache.outputs.dir }}
+            key: ${{ steps.extcache.outputs.key }}
+            restore-keys: ${{ steps.extcache.outputs.key }}
 
-    - name: Install dependencies
-      if: steps.composer-cache.outputs.cache-hit != 'true'
-      run: composer install --prefer-dist --no-progress --no-suggest
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          extensions: mbstring, dom, fileinfo, intl, gd, imagick, bcmath, soap, zip, pcov
+          coverage: pcov
 
-    # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
-    # Docs: https://getcomposer.org/doc/articles/scripts.md
+      - name: Validate composer.json and composer.lock
+        run: composer validate
 
-    - name: Run test suite
-      env:
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v2
+        with:
+            path: vendor
+            key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+            restore-keys: |
+              ${{ runner.os }}-php-
+
+      - name: Install dependencies
+        if: steps.composer-cache.outputs.cache-hit != 'true'
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+        # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
+        # Docs: https://getcomposer.org/doc/articles/scripts.md
+
+      - name: Run test suite
+        env:
           MERCADOPAGO_API_CLIENT_ID: ${{ secrets.MERCADOPAGO_API_CLIENT_ID }}
           MERCADOPAGO_API_CLIENT_SECRET: ${{ secrets.MERCADOPAGO_API_CLIENT_SECRET }}
           XDEBUG_MODE: coverage
-      run: composer run-script test
+        run: composer run-script test

@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use PHPUnit\Framework\Attributes\Test;
 use Puntodev\MercadoPago\MercadoPago;
 use Puntodev\MercadoPago\MercadoPagoApi;
 
@@ -14,7 +15,7 @@ class MercadoPagoTest extends TestCase
         $app['config']->set('mercadopago.use_sandbox', 'true');
     }
 
-    /** @test */
+    #[Test]
     public function default_client()
     {
         /** @var MercadoPago $mercadoPago */
@@ -25,7 +26,7 @@ class MercadoPagoTest extends TestCase
         $this->assertInstanceOf(MercadoPagoApi::class, $client);
     }
 
-    /** @test */
+    #[Test]
     public function with_credentials()
     {
         /** @var MercadoPago $mercadoPago */
@@ -36,7 +37,7 @@ class MercadoPagoTest extends TestCase
         $this->assertInstanceOf(MercadoPagoApi::class, $client);
     }
 
-    /** @test */
+    #[Test]
     public function using_sandbox()
     {
         /** @var MercadoPago $mercadoPago */
