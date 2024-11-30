@@ -14,15 +14,15 @@ class PaymentPreferenceItemBuilder
     /**
      * PaymentPreferenceItemBuilder constructor.
      */
-    public function __construct(private PaymentPreferenceBuilder $paymentPreferenceBuilder)
+    public function __construct(private readonly PaymentPreferenceBuilder $paymentPreferenceBuilder)
     {
     }
 
     /**
      * @param string $title
-     * @return PaymentPreferenceItemBuilder
+     * @return static
      */
-    public function title(string $title): PaymentPreferenceItemBuilder
+    public function title(string $title): static
     {
         $this->title = $title;
         return $this;
@@ -30,9 +30,9 @@ class PaymentPreferenceItemBuilder
 
     /**
      * @param int $quantity
-     * @return PaymentPreferenceItemBuilder
+     * @return static
      */
-    public function quantity(int $quantity): PaymentPreferenceItemBuilder
+    public function quantity(int $quantity): static
     {
         $this->quantity = $quantity;
         return $this;
@@ -40,9 +40,9 @@ class PaymentPreferenceItemBuilder
 
     /**
      * @param float $unitPrice
-     * @return PaymentPreferenceItemBuilder
+     * @return static
      */
-    public function unitPrice(float $unitPrice): PaymentPreferenceItemBuilder
+    public function unitPrice(float $unitPrice): static
     {
         $this->unitPrice = $unitPrice;
         return $this;
@@ -50,9 +50,9 @@ class PaymentPreferenceItemBuilder
 
     /**
      * @param string $currency
-     * @return PaymentPreferenceItemBuilder
+     * @return static
      */
-    public function currency(string $currency): PaymentPreferenceItemBuilder
+    public function currency(string $currency): static
     {
         $this->currency = $currency;
         return $this;
@@ -60,7 +60,7 @@ class PaymentPreferenceItemBuilder
 
     public function make(): PaymentPreferenceBuilder
     {
-        $this->paymentPreferenceBuilder->addItem(
+        return $this->paymentPreferenceBuilder->addItem(
             [
                 'title' => $this->title,
                 'quantity' => $this->quantity,
@@ -68,6 +68,5 @@ class PaymentPreferenceItemBuilder
                 'currency' => $this->currency,
             ]
         );
-        return $this->paymentPreferenceBuilder;
     }
 }
