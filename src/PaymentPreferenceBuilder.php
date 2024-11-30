@@ -34,9 +34,9 @@ class PaymentPreferenceBuilder
 
     /**
      * @param string $externalId
-     * @return PaymentPreferenceBuilder
+     * @return static
      */
-    public function externalId(string $externalId): PaymentPreferenceBuilder
+    public function externalId(string $externalId): static
     {
         $this->externalId = $externalId;
         return $this;
@@ -52,9 +52,9 @@ class PaymentPreferenceBuilder
 
     /**
      * @param string $payerFirstName
-     * @return PaymentPreferenceBuilder
+     * @return static
      */
-    public function payerFirstName(string $payerFirstName): PaymentPreferenceBuilder
+    public function payerFirstName(string $payerFirstName): static
     {
         $this->payerFirstName = $payerFirstName;
         return $this;
@@ -62,9 +62,9 @@ class PaymentPreferenceBuilder
 
     /**
      * @param string $payerLastName
-     * @return PaymentPreferenceBuilder
+     * @return static
      */
-    public function payerLastName(string $payerLastName): PaymentPreferenceBuilder
+    public function payerLastName(string $payerLastName): static
     {
         $this->payerLastName = $payerLastName;
         return $this;
@@ -72,9 +72,9 @@ class PaymentPreferenceBuilder
 
     /**
      * @param string $payerEmail
-     * @return PaymentPreferenceBuilder
+     * @return static
      */
-    public function payerEmail(string $payerEmail): PaymentPreferenceBuilder
+    public function payerEmail(string $payerEmail): static
     {
         $this->payerEmail = $payerEmail;
         return $this;
@@ -82,9 +82,9 @@ class PaymentPreferenceBuilder
 
     /**
      * @param array $excludedPaymentMethods
-     * @return PaymentPreferenceBuilder
+     * @return static
      */
-    public function excludedPaymentMethods(array $excludedPaymentMethods): PaymentPreferenceBuilder
+    public function excludedPaymentMethods(array $excludedPaymentMethods): static
     {
         $this->excludedPaymentMethods = $excludedPaymentMethods;
         return $this;
@@ -92,9 +92,9 @@ class PaymentPreferenceBuilder
 
     /**
      * @param string $successBackUrl
-     * @return PaymentPreferenceBuilder
+     * @return static
      */
-    public function successBackUrl(string $successBackUrl): PaymentPreferenceBuilder
+    public function successBackUrl(string $successBackUrl): static
     {
         $this->successBackUrl = $successBackUrl;
         return $this;
@@ -102,9 +102,9 @@ class PaymentPreferenceBuilder
 
     /**
      * @param string $pendingBackUrl
-     * @return PaymentPreferenceBuilder
+     * @return static
      */
-    public function pendingBackUrl(string $pendingBackUrl): PaymentPreferenceBuilder
+    public function pendingBackUrl(string $pendingBackUrl): static
     {
         $this->pendingBackUrl = $pendingBackUrl;
         return $this;
@@ -112,9 +112,9 @@ class PaymentPreferenceBuilder
 
     /**
      * @param string $failureBackUrl
-     * @return PaymentPreferenceBuilder
+     * @return static
      */
-    public function failureBackUrl(string $failureBackUrl): PaymentPreferenceBuilder
+    public function failureBackUrl(string $failureBackUrl): static
     {
         $this->failureBackUrl = $failureBackUrl;
         return $this;
@@ -122,9 +122,9 @@ class PaymentPreferenceBuilder
 
     /**
      * @param string $notificationUrl
-     * @return PaymentPreferenceBuilder
+     * @return static
      */
-    public function notificationUrl(string $notificationUrl): PaymentPreferenceBuilder
+    public function notificationUrl(string $notificationUrl): static
     {
         $this->notificationUrl = $notificationUrl;
         return $this;
@@ -132,9 +132,9 @@ class PaymentPreferenceBuilder
 
     /**
      * @param DateTime|null $expiration
-     * @return PaymentPreferenceBuilder
+     * @return static
      */
-    public function expiration(DateTime|null $expiration): PaymentPreferenceBuilder
+    public function expiration(DateTime|null $expiration): static
     {
         $this->expiration = $expiration;
         return $this;
@@ -142,17 +142,19 @@ class PaymentPreferenceBuilder
 
     /**
      * @param bool $binaryMode
-     * @return PaymentPreferenceBuilder
+     * @return static
      */
-    public function binaryMode(bool $binaryMode): PaymentPreferenceBuilder
+    public function binaryMode(bool $binaryMode): static
     {
         $this->binaryMode = $binaryMode;
         return $this;
     }
 
-    public function addItem(array $item)
+    public function addItem(array $item): static
     {
         $this->items[] = $item;
+
+        return $this;
     }
 
     public function make(): array
