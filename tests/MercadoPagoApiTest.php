@@ -23,12 +23,6 @@ class MercadoPagoApiTest extends TestCase
         );
     }
 
-    protected function getEnvironmentSetUp($app)
-    {
-        $app['config']->set('mercadopago.client_id', env('MERCADOPAGO_API_CLIENT_ID'));
-        $app['config']->set('mercadopago.client_secret', env('MERCADOPAGO_API_CLIENT_SECRET'));
-    }
-
     /**
      * @return void
      * @throws RequestException

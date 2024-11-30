@@ -19,6 +19,7 @@ class PaymentPreferenceBuilderTest extends TestCase
             ->title('My custom product')
             ->unitPrice(23.206)
             ->currency('ARS')
+            ->quantity(2)
             ->make()
             ->payerFirstName('John')
             ->payerLastName('Lennon')
@@ -36,7 +37,7 @@ class PaymentPreferenceBuilderTest extends TestCase
             'items' => [
                 [
                     'title' => 'My custom product',
-                    'quantity' => 1,
+                    'quantity' => 2,
                     'unit_price' => 23.21,
                     'currency' => 'ARS',
                 ],
