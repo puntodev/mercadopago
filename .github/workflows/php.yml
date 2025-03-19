@@ -39,11 +39,15 @@ jobs:
       - name: Validate composer.json and composer.lock
         run: composer validate
 
+      - name: Get composer cache directory
+        id: composer-cache-dir
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
       - name: Cache Composer packages
         id: composer-cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
-            path: vendor
+            path: ${{ steps.composer-cache-dir.outputs.dir }}
             key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
             restore-keys: |
               ${{ runner.os }}-php-
