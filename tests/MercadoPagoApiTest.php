@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\Client\RequestException;
 use Puntodev\MercadoPago\MercadoPagoApi;
+use Puntodev\MercadoPago\MercadoPagoApiClient;
 use Puntodev\MercadoPago\PaymentPreferenceBuilder;
 
 class MercadoPagoApiTest extends TestCase
@@ -17,7 +18,7 @@ class MercadoPagoApiTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->mercadoPagoApi = new MercadoPagoApi(
+        $this->mercadoPagoApi = new MercadoPagoApiClient(
             config('mercadopago.client_id'),
             config('mercadopago.client_secret'),
         );

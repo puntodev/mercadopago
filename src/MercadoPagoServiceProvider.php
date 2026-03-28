@@ -6,9 +6,6 @@ use Illuminate\Support\ServiceProvider;
 
 class MercadoPagoServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap the application services.
-     */
     public function boot()
     {
         if ($this->app->runningInConsole()) {
@@ -18,19 +15,14 @@ class MercadoPagoServiceProvider extends ServiceProvider
         }
     }
 
-    /**
-     * Register the application services.
-     */
     public function register()
     {
-        // Automatically apply the package configuration
         $this->mergeConfigFrom(__DIR__ . '/../config/mercadopago.php', 'mercadopago');
 
-        // Register the main class to use with the facade
         $this->app->singleton(MercadoPago::class, function ($app) {
-            $useSandbox = config('mercadopago.use_sandbox', false);
-
-            return new MercadoPago($useSandbox);
+            return new MercadoPagoClient(
+                config('mercadopago.use_sandbox', false),
+            );
         });
         $this->app->alias(MercadoPago::class, 'mercadopago');
     }
