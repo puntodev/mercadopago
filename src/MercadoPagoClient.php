@@ -2,7 +2,7 @@
 
 namespace Puntodev\MercadoPago;
 
-class MercadoPagoClient implements MercadoPago
+readonly class MercadoPagoClient implements MercadoPago
 {
     public function __construct(private bool $useSandbox = false)
     {
