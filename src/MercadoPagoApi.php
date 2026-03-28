@@ -4,7 +4,6 @@
 namespace Puntodev\MercadoPago;
 
 
-use GuzzleHttp\RequestOptions;
 use Illuminate\Http\Client\RequestException;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
@@ -56,7 +55,7 @@ class MercadoPagoApi
     {
         $token = $this->getToken();
         return Http::withToken($token['access_token'])
-            ->withOptions([RequestOptions::QUERY => $query])
+            ->withQueryParameters($query)
             ->get("https://{$this->host}/merchant_orders")
             ->throw()
             ->json();
@@ -85,7 +84,7 @@ class MercadoPagoApi
     {
         $token = $this->getToken();
         return Http::withToken($token['access_token'])
-            ->withOptions([RequestOptions::QUERY => $query])
+            ->withQueryParameters($query)
             ->get("https://{$this->host}/v1/payments/search")
             ->throw()
             ->json();
