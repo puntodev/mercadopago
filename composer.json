@@ -17,12 +17,11 @@
     ],
     "require": {
         "php": ">=8.4 <9.0",
-        "illuminate/support": "^12.53 || ^13.0",
-        "ext-json": "*"
+        "illuminate/support": "^12.53 || ^13.0"
     },
     "require-dev": {
-        "orchestra/testbench": "^10.9",
-        "phpunit/phpunit": "^12.4"
+        "orchestra/testbench": "^10.11",
+        "phpunit/phpunit": "^12.5"
     },
     "autoload": {
         "psr-4": {

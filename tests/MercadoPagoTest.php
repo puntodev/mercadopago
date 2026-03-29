@@ -5,6 +5,7 @@ namespace Tests;
 use PHPUnit\Framework\Attributes\Test;
 use Puntodev\MercadoPago\MercadoPago;
 use Puntodev\MercadoPago\MercadoPagoApi;
+use Puntodev\MercadoPago\MercadoPagoApiClient;
 
 class MercadoPagoTest extends TestCase
 {
@@ -23,7 +24,7 @@ class MercadoPagoTest extends TestCase
 
         $client = $mercadoPago->defaultClient();
 
-        $this->assertInstanceOf(MercadoPagoApi::class, $client);
+        $this->assertInstanceOf(MercadoPagoApiClient::class, $client);
     }
 
     #[Test]
@@ -34,7 +35,7 @@ class MercadoPagoTest extends TestCase
 
         $client = $mercadoPago->withCredentials('A', 'B');
 
-        $this->assertInstanceOf(MercadoPagoApi::class, $client);
+        $this->assertInstanceOf(MercadoPagoApiClient::class, $client);
     }
 
     #[Test]
