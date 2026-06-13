@@ -5,6 +5,7 @@ namespace Tests;
 use Exception;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\Client\RequestException;
+use PHPUnit\Framework\Attributes\Test;
 use Puntodev\MercadoPago\MercadoPagoApi;
 use Puntodev\MercadoPago\MercadoPagoApiClient;
 use Puntodev\MercadoPago\PaymentPreferenceBuilder;
@@ -25,11 +26,10 @@ class MercadoPagoApiTest extends TestCase
     }
 
     /**
-     * @return void
-     *
      * @throws RequestException
      */
-    public function test_create_order()
+    #[Test]
+    public function create_order()
     {
         $order = (new PaymentPreferenceBuilder)
             ->item()
@@ -67,66 +67,60 @@ class MercadoPagoApiTest extends TestCase
     }
 
     /**
-     * @return void
-     *
      * @throws Exception
      */
-    public function test_find_merchant_orders()
+    #[Test]
+    public function find_merchant_orders()
     {
         $merchantOrders = $this->mercadoPagoApi->findMerchantOrders();
         $this->assertIsArray($merchantOrders);
     }
 
     /**
-     * @return void
-     *
      * @throws Exception
      */
-    public function test_find_merchant_order_by_id()
+    #[Test]
+    public function find_merchant_order_by_id()
     {
         $payment = $this->mercadoPagoApi->findMerchantOrderById('1129339369');
         $this->assertIsArray($payment);
     }
 
     /**
-     * @return void
-     *
      * @throws Exception
      */
-    public function test_find_order_by_id_invalid()
+    #[Test]
+    public function find_order_by_id_invalid()
     {
         $this->expectException(RequestException::class);
         $this->mercadoPagoApi->findMerchantOrderById('invalid-id');
     }
 
     /**
-     * @return void
-     *
      * @throws Exception
      */
-    public function test_find_payments()
+    #[Test]
+    public function find_payments()
     {
         $payment = $this->mercadoPagoApi->findPayments();
         $this->assertIsArray($payment);
     }
 
     /**
-     * @return void
-     *
      * @throws Exception
      */
-    public function test_find_payments_by_id()
+    #[Test]
+    public function find_payments_by_id()
     {
         $payment = $this->mercadoPagoApi->findPaymentById('5287653537');
         $this->assertIsArray($payment);
     }
 
     /**
-     * @return void
-     *
      * @throws Exception
      */
-    public function test_find_payments_by_id_invalid()
+    #[Test]
+    public function find_payments_by_id_invalid()
     {
         $this->expectException(RequestException::class);
         $this->mercadoPagoApi->findPaymentById('invalid-id');
