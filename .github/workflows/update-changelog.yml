@@ -1,0 +1,38 @@
+name: Update Changelog
+
+# When a (non-prerelease) GitHub Release is published, write its notes into
+# CHANGELOG.md under the released version and commit the result back to master.
+on:
+  release:
+    types: [released]
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v5
+        with:
+          ref: master
+          # Admin PAT so the changelog commit can be pushed to the protected
+          # master branch (the default GITHUB_TOKEN is rejected by branch
+          # protection). Requires enforce_admins to be disabled on master.
+          token: ${{ secrets.RELEASE_TOKEN }}
+          persist-credentials: true
+
+      - name: Update CHANGELOG
+        uses: stefanzweifel/changelog-updater-action@v1
+        with:
+          latest-version: ${{ github.event.release.tag_name }}
+          release-notes: ${{ github.event.release.body }}
+
+      - name: Commit updated CHANGELOG
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          branch: master
+          commit_message: "docs: update CHANGELOG for ${{ github.event.release.tag_name }}"
+          file_pattern: CHANGELOG.md

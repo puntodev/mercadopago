@@ -1,0 +1,33 @@
+# Configures GitHub's "Generate release notes" button.
+# Pull requests are grouped by their labels; the catch-all category ensures
+# every merged PR shows up even when it is unlabeled.
+changelog:
+  exclude:
+    labels:
+      - ignore-for-release
+    authors:
+      - dependabot
+  categories:
+    - title: 🛡️ Security
+      labels:
+        - security
+    - title: 🚀 Features
+      labels:
+        - enhancement
+        - feature
+    - title: 🐛 Bug Fixes
+      labels:
+        - bug
+        - fix
+    - title: 🧰 Maintenance & Dependencies
+      labels:
+        - chore
+        - dependencies
+        - maintenance
+    - title: 📚 Documentation
+      labels:
+        - documentation
+        - docs
+    - title: Other Changes
+      labels:
+        - "*"
