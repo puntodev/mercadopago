@@ -9,7 +9,21 @@ Released entries below are maintained automatically from the GitHub release note
 (see `.github/workflows/update-changelog.yml`); the `Unreleased` section tracks the
 range of changes on `master` that have not been released yet.
 
-## [Unreleased]
+## [Unreleased](https://github.com/puntodev/mercadopago/compare/v7.0.0...HEAD)
+
+## [v7.0.0](https://github.com/puntodev/mercadopago/compare/v6.0.0...v7.0.0) - 2026-06-13
+
+<!-- Release notes generated using configuration in .github/release.yml at master -->
+### What's Changed
+
+#### Other Changes
+
+* Set up Laravel Pint + docs (AGENTS.md, README) by @marianogoldman in https://github.com/puntodev/mercadopago/pull/51
+* chore: require Laravel 13+ and update dev dependencies by @marianogoldman in https://github.com/puntodev/mercadopago/pull/52
+* docs: reflect Laravel 13+ requirement by @marianogoldman in https://github.com/puntodev/mercadopago/pull/53
+* Automate the release process by @marianogoldman in https://github.com/puntodev/mercadopago/pull/54
+
+**Full Changelog**: https://github.com/puntodev/mercadopago/compare/v6.0.0...v7.0.0
 
 ## v6.0.0 - 2026-03-28
 
@@ -114,5 +128,3 @@ range of changes on `master` that have not been released yet.
 ## v0.0.1 - 2020-10-11
 
 - Initial code migration from client project (#1).
-
-[Unreleased]: https://github.com/puntodev/mercadopago/compare/v6.0.0...HEAD
