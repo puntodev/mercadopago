@@ -4,16 +4,15 @@ namespace Tests;
 
 use Carbon\Carbon;
 use PHPUnit\Framework\Attributes\Test;
-use Puntodev\MercadoPago\PaymentPreferenceBuilder;
 use PHPUnit\Framework\TestCase;
+use Puntodev\MercadoPago\PaymentPreferenceBuilder;
 
 class PaymentPreferenceBuilderTest extends TestCase
 {
-
     #[Test]
     public function create_order_with_int_amount()
     {
-        $order = (new PaymentPreferenceBuilder())
+        $order = (new PaymentPreferenceBuilder)
             ->externalId('31fe5538-8589-437d-8823-3b0574186a5f')
             ->item()
             ->title('My custom product')
@@ -29,7 +28,7 @@ class PaymentPreferenceBuilderTest extends TestCase
             ->pendingBackUrl('https://localhost:8080/pending')
             ->failureBackUrl('https://localhost:8080/failure')
             ->notificationUrl('https://localhost:8080/notification')
-            ->expiration(Carbon::parse("2021-05-21T20:45:32"))
+            ->expiration(Carbon::parse('2021-05-21T20:45:32'))
             ->binaryMode(true)
             ->make();
 

@@ -15,7 +15,7 @@ class MercadoPagoApiTest extends TestCase
 
     private MercadoPagoApi $mercadoPagoApi;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->mercadoPagoApi = new MercadoPagoApiClient(
@@ -26,11 +26,12 @@ class MercadoPagoApiTest extends TestCase
 
     /**
      * @return void
+     *
      * @throws RequestException
      */
-    public function testCreateOrder()
+    public function test_create_order()
     {
-        $order = (new PaymentPreferenceBuilder())
+        $order = (new PaymentPreferenceBuilder)
             ->item()
             ->title('My custom product')
             ->unitPrice(23.20)
@@ -67,9 +68,10 @@ class MercadoPagoApiTest extends TestCase
 
     /**
      * @return void
+     *
      * @throws Exception
      */
-    public function testFindMerchantOrders()
+    public function test_find_merchant_orders()
     {
         $merchantOrders = $this->mercadoPagoApi->findMerchantOrders();
         $this->assertIsArray($merchantOrders);
@@ -77,9 +79,10 @@ class MercadoPagoApiTest extends TestCase
 
     /**
      * @return void
+     *
      * @throws Exception
      */
-    public function testFindMerchantOrderById()
+    public function test_find_merchant_order_by_id()
     {
         $payment = $this->mercadoPagoApi->findMerchantOrderById('1129339369');
         $this->assertIsArray($payment);
@@ -87,9 +90,10 @@ class MercadoPagoApiTest extends TestCase
 
     /**
      * @return void
+     *
      * @throws Exception
      */
-    public function testFindOrderByIdInvalid()
+    public function test_find_order_by_id_invalid()
     {
         $this->expectException(RequestException::class);
         $this->mercadoPagoApi->findMerchantOrderById('invalid-id');
@@ -97,9 +101,10 @@ class MercadoPagoApiTest extends TestCase
 
     /**
      * @return void
+     *
      * @throws Exception
      */
-    public function testFindPayments()
+    public function test_find_payments()
     {
         $payment = $this->mercadoPagoApi->findPayments();
         $this->assertIsArray($payment);
@@ -107,9 +112,10 @@ class MercadoPagoApiTest extends TestCase
 
     /**
      * @return void
+     *
      * @throws Exception
      */
-    public function testFindPaymentsById()
+    public function test_find_payments_by_id()
     {
         $payment = $this->mercadoPagoApi->findPaymentById('5287653537');
         $this->assertIsArray($payment);
@@ -117,9 +123,10 @@ class MercadoPagoApiTest extends TestCase
 
     /**
      * @return void
+     *
      * @throws Exception
      */
-    public function testFindPaymentsByIdInvalid()
+    public function test_find_payments_by_id_invalid()
     {
         $this->expectException(RequestException::class);
         $this->mercadoPagoApi->findPaymentById('invalid-id');

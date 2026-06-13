@@ -10,7 +10,9 @@ use Illuminate\Support\Facades\Log;
 class MercadoPagoApiClient implements MercadoPagoApi
 {
     private string $apiClientKey;
+
     private string $apiClientSecret;
+
     private string $host;
 
     public function __construct(string $apiClientKey, string $apiClientSecret)
@@ -26,6 +28,7 @@ class MercadoPagoApiClient implements MercadoPagoApi
     public function createPaymentPreference(array $order): array
     {
         $token = $this->getToken();
+
         return Http::withToken($token['access_token'])
             ->post("https://{$this->host}/checkout/preferences", $order)
             ->throw()
@@ -38,6 +41,7 @@ class MercadoPagoApiClient implements MercadoPagoApi
     public function findMerchantOrders(array $query = []): ?array
     {
         $token = $this->getToken();
+
         return Http::withToken($token['access_token'])
             ->withQueryParameters($query)
             ->get("https://{$this->host}/merchant_orders")
@@ -51,6 +55,7 @@ class MercadoPagoApiClient implements MercadoPagoApi
     public function findMerchantOrderById(string $id): ?array
     {
         $token = $this->getToken();
+
         return Http::withToken($token['access_token'])
             ->get("https://{$this->host}/merchant_orders/$id")
             ->throw()
@@ -63,6 +68,7 @@ class MercadoPagoApiClient implements MercadoPagoApi
     public function findPayments(array $query = []): ?array
     {
         $token = $this->getToken();
+
         return Http::withToken($token['access_token'])
             ->withQueryParameters($query)
             ->get("https://{$this->host}/v1/payments/search")
@@ -76,6 +82,7 @@ class MercadoPagoApiClient implements MercadoPagoApi
     public function findPaymentById(string $id): ?array
     {
         $token = $this->getToken();
+
         return Http::withToken($token['access_token'])
             ->get("https://{$this->host}/v1/payments/$id")
             ->throw()
@@ -86,6 +93,7 @@ class MercadoPagoApiClient implements MercadoPagoApi
     {
         return Cache::remember("mercadopago-token-{$this->apiClientKey}", 1000, function () {
             Log::debug('Obtaining MercadoPago token from live server');
+
             return Http::withBasicAuth($this->apiClientKey, $this->apiClientSecret)
                 ->asJson()
                 ->post("https://{$this->host}/oauth/token", [

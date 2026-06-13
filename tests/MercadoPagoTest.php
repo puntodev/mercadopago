@@ -4,7 +4,6 @@ namespace Tests;
 
 use PHPUnit\Framework\Attributes\Test;
 use Puntodev\MercadoPago\MercadoPago;
-use Puntodev\MercadoPago\MercadoPagoApi;
 use Puntodev\MercadoPago\MercadoPagoApiClient;
 
 class MercadoPagoTest extends TestCase

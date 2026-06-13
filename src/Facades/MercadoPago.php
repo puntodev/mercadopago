@@ -4,7 +4,6 @@ namespace Puntodev\MercadoPago\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-
 /**
  * @method static \Puntodev\MercadoPago\MercadoPagoApi defaultClient()
  * @method static \Puntodev\MercadoPago\MercadoPagoApi withCredentials(string $clientId, string $clientSecret)
