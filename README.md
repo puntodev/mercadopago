@@ -10,7 +10,7 @@ Laravel's HTTP client under the hood and caches the OAuth2 access token automati
 ## Requirements
 
 - PHP `>=8.4 <9.0`
-- Laravel 12 / 13 (`illuminate/support` `^12.53 || ^13.0`)
+- Laravel 13+ (`illuminate/support` `^13.0`)
 
 ## Installation
 
