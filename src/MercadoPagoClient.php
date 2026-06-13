@@ -4,9 +4,7 @@ namespace Puntodev\MercadoPago;
 
 readonly class MercadoPagoClient implements MercadoPago
 {
-    public function __construct(private bool $useSandbox = false)
-    {
-    }
+    public function __construct(private bool $useSandbox = false) {}
 
     public function defaultClient(): MercadoPagoApi
     {
