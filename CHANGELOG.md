@@ -9,7 +9,18 @@ Released entries below are maintained automatically from the GitHub release note
 (see `.github/workflows/update-changelog.yml`); the `Unreleased` section tracks the
 range of changes on `master` that have not been released yet.
 
-## [Unreleased](https://github.com/puntodev/mercadopago/compare/v7.0.0...HEAD)
+## [Unreleased](https://github.com/puntodev/mercadopago/compare/v7.0.1...HEAD)
+
+## [v7.0.1](https://github.com/puntodev/mercadopago/compare/v7.0.0...v7.0.1) - 2026-06-28
+
+<!-- Release notes generated using configuration in .github/release.yml at master -->
+### What's Changed
+
+#### Other Changes
+
+* fix(deps): resolve Dependabot security alerts and update dependencies by @marianogoldman in https://github.com/puntodev/mercadopago/pull/55
+
+**Full Changelog**: https://github.com/puntodev/mercadopago/compare/v7.0.0...v7.0.1
 
 ## [v7.0.0](https://github.com/puntodev/mercadopago/compare/v6.0.0...v7.0.0) - 2026-06-13
 
