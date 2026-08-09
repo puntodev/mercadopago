@@ -141,14 +141,14 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 
 Releases are cut from GitHub and the changelog is kept in sync automatically:
 
-1. Merge the pull requests you want to ship into `master`. Label them so the notes
+1. Merge the pull requests you want to ship into `main`. Label them so the notes
    group nicely (`security`, `enhancement`, `bug`, `dependencies`, `documentation`);
    grouping is configured in [`.github/release.yml`](.github/release.yml).
 2. On GitHub, go to **Releases → Draft a new release**, create a `vX.Y.Z` tag
    following [SemVer](https://semver.org/), and click **Generate release notes**.
 3. **Publish** the release. Packagist picks up the new tag, and the
    [`update-changelog.yml`](.github/workflows/update-changelog.yml) workflow writes
-   the release notes into `CHANGELOG.md` and commits them back to `master`.
+   the release notes into `CHANGELOG.md` and commits them back to `main`.
 
 The `Unreleased` section in the changelog is just an anchor — release notes flow
 from the published GitHub release, so there is no changelog to edit by hand.
