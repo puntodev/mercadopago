@@ -86,5 +86,4 @@ composer format          # vendor/bin/pint (fix style)
 ## Workflow rules (inherited from the user's global config)
 
 - **Do not commit on `main`.** Always work on a branch or worktree.
-- PRs are always opened as **Draft**.
 - Run `git pull` before starting to make sure you have the latest version.
