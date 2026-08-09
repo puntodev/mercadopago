@@ -72,7 +72,7 @@ composer format          # vendor/bin/pint (fix style)
 - ⚠️ **`tests/MercadoPagoApiTest.php` makes real HTTP calls to MercadoPago.** It requires
   valid credentials in `MERCADOPAGO_API_CLIENT_ID` / `MERCADOPAGO_API_CLIENT_SECRET`
   (in `.env` locally, or GitHub Secrets in CI). These are not isolated unit tests.
-- CI: `.github/workflows/php.yml` runs on PHP 8.4 on every push/PR to `master`,
+- CI: `.github/workflows/php.yml` runs on PHP 8.4 on every push/PR to `main`,
   including a Pint code-style check.
 
 ## Conventions
@@ -85,6 +85,6 @@ composer format          # vendor/bin/pint (fix style)
 
 ## Workflow rules (inherited from the user's global config)
 
-- **Do not commit on `master`.** Always work on a branch or worktree.
+- **Do not commit on `main`.** Always work on a branch or worktree.
 - PRs are always opened as **Draft**.
 - Run `git pull` before starting to make sure you have the latest version.
