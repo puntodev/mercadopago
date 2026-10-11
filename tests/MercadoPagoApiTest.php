@@ -82,7 +82,7 @@ class MercadoPagoApiTest extends TestCase
     #[Test]
     public function find_merchant_order_by_id()
     {
-        $payment = $this->mercadoPagoApi->findMerchantOrderById('1129339369');
+        $payment = $this->mercadoPagoApi->findMerchantOrderById('45199291068');
         $this->assertIsArray($payment);
     }
 
@@ -112,7 +112,7 @@ class MercadoPagoApiTest extends TestCase
     #[Test]
     public function find_payments_by_id()
     {
-        $payment = $this->mercadoPagoApi->findPaymentById('5287653537');
+        $payment = $this->mercadoPagoApi->findPaymentById('182591613499');
         $this->assertIsArray($payment);
     }
 
