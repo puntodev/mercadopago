@@ -5,6 +5,7 @@ namespace Tests;
 use Exception;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\Client\RequestException;
+use Illuminate\Support\Facades\Http;
 use PHPUnit\Framework\Attributes\Test;
 use Puntodev\MercadoPago\MercadoPagoApi;
 use Puntodev\MercadoPago\MercadoPagoApiClient;
@@ -82,8 +83,11 @@ class MercadoPagoApiTest extends TestCase
     #[Test]
     public function find_merchant_order_by_id()
     {
-        $payment = $this->mercadoPagoApi->findMerchantOrderById('45199291068');
-        $this->assertIsArray($payment);
+        $merchantOrderId = $this->createMerchantOrder();
+
+        $merchantOrder = $this->mercadoPagoApi->findMerchantOrderById($merchantOrderId);
+
+        $this->assertEquals($merchantOrderId, $merchantOrder['id']);
     }
 
     /**
@@ -112,8 +116,13 @@ class MercadoPagoApiTest extends TestCase
     #[Test]
     public function find_payments_by_id()
     {
-        $payment = $this->mercadoPagoApi->findPaymentById('182591613499');
-        $this->assertIsArray($payment);
+        $payments = $this->mercadoPagoApi->findPayments(['limit' => 1]);
+        $this->assertNotEmpty($payments['results'], 'The MercadoPago test account has no payments. Pay a preference with a test buyer to create one.');
+        $paymentId = (string) $payments['results'][0]['id'];
+
+        $payment = $this->mercadoPagoApi->findPaymentById($paymentId);
+
+        $this->assertEquals($paymentId, $payment['id']);
     }
 
     /**
@@ -124,5 +133,45 @@ class MercadoPagoApiTest extends TestCase
     {
         $this->expectException(RequestException::class);
         $this->mercadoPagoApi->findPaymentById('invalid-id');
+    }
+
+    /**
+     * @throws RequestException
+     */
+    private function createMerchantOrder(): string
+    {
+        $preference = $this->mercadoPagoApi->createPaymentPreference((new PaymentPreferenceBuilder)
+            ->item()
+            ->title('My custom product')
+            ->unitPrice(23.20)
+            ->quantity(1)
+            ->currency('ARS')
+            ->make()
+            ->externalId($this->faker->uuid)
+            ->successBackUrl('https://localhost:8080/return')
+            ->make());
+
+        $accessToken = Http::asJson()
+            ->post('https://api.mercadopago.com/oauth/token', [
+                'grant_type' => 'client_credentials',
+                'client_id' => config('mercadopago.client_id'),
+                'client_secret' => config('mercadopago.client_secret'),
+            ])
+            ->throw()
+            ->json('access_token');
+
+        return (string) Http::withToken($accessToken)
+            ->post('https://api.mercadopago.com/merchant_orders', [
+                'preference_id' => $preference['id'],
+                'external_reference' => $preference['external_reference'],
+                'items' => [[
+                    'title' => 'My custom product',
+                    'unit_price' => 23.20,
+                    'quantity' => 1,
+                    'currency_id' => 'ARS',
+                ]],
+            ])
+            ->throw()
+            ->json('id');
     }
 }
