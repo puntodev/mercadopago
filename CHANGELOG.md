@@ -9,7 +9,18 @@ Released entries below are maintained automatically from the GitHub release note
 (see `.github/workflows/update-changelog.yml`); the `Unreleased` section tracks the
 range of changes on `main` that have not been released yet.
 
-## [Unreleased](https://github.com/puntodev/mercadopago/compare/v7.0.3...HEAD)
+## [Unreleased](https://github.com/puntodev/mercadopago/compare/v7.0.4...HEAD)
+
+## [v7.0.4](https://github.com/puntodev/mercadopago/compare/v7.0.3...v7.0.4) - 2026-10-11
+
+<!-- Release notes generated using configuration in .github/release.yml at main -->
+### What's Changed
+
+#### Other Changes
+
+* fix(deps): bump league/commonmark to 2.10.3 for Dependabot alerts by @marianogoldman in https://github.com/puntodev/mercadopago/pull/61
+
+**Full Changelog**: https://github.com/puntodev/mercadopago/compare/v7.0.3...v7.0.4
 
 ## [v7.0.3](https://github.com/puntodev/mercadopago/compare/v7.0.2...v7.0.3) - 2026-09-03
 
