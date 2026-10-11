@@ -5,8 +5,6 @@ changelog:
   exclude:
     labels:
       - ignore-for-release
-    authors:
-      - dependabot
   categories:
     - title: 🛡️ Security
       labels:
