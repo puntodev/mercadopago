@@ -1,24 +1,22 @@
 version: 2
-updates:
-  - package-ecosystem: composer
-    directory: /
-    schedule:
-      interval: weekly
-    commit-message:
-      prefix: chore(deps)
-    groups:
-      composer-minor-patch:
-        update-types:
-          - minor
-          - patch
 
-  - package-ecosystem: github-actions
-    directory: /
+multi-ecosystem-groups:
+  weekly:
     schedule:
-      interval: weekly
+      interval: "weekly"
     commit-message:
-      prefix: chore(deps)
-    groups:
-      github-actions:
-        patterns:
-          - "*"
+      prefix: "chore(deps)"
+
+updates:
+  - package-ecosystem: "composer"
+    directory: "/"
+    patterns: ["*"]
+    multi-ecosystem-group: "weekly"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    patterns: ["*"]
+    multi-ecosystem-group: "weekly"
