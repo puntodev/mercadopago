@@ -9,7 +9,25 @@ Released entries below are maintained automatically from the GitHub release note
 (see `.github/workflows/update-changelog.yml`); the `Unreleased` section tracks the
 range of changes on `main` that have not been released yet.
 
-## [Unreleased](https://github.com/puntodev/mercadopago/compare/v7.0.5...HEAD)
+## [Unreleased](https://github.com/puntodev/mercadopago/compare/v8.0.0...HEAD)
+
+## [v8.0.0](https://github.com/puntodev/mercadopago/compare/v7.0.5...v8.0.0) - 2026-10-18
+
+### ⚠️ Breaking change
+
+Requires PHP 8.5 or later. PHP 8.4 is no longer supported. Projects on PHP 8.4 stay on the previous major version.
+
+<!-- Release notes generated using configuration in .github/release.yml at main -->
+### What's Changed
+
+#### 🧰 Maintenance & Dependencies
+
+* chore: label PRs by title prefix for release notes by @marianogoldman in https://github.com/puntodev/mercadopago/pull/66
+* chore(deps): bump actions/github-script from 7 to 9 in the github-actions group by @dependabot[bot] in https://github.com/puntodev/mercadopago/pull/67
+* chore(deps): un solo PR semanal de Dependabot sin majors by @marianogoldman in https://github.com/puntodev/mercadopago/pull/68
+* chore: require PHP 8.5 by @marianogoldman in https://github.com/puntodev/mercadopago/pull/69
+
+**Full Changelog**: https://github.com/puntodev/mercadopago/compare/v7.0.5...v8.0.0
 
 ## [v7.0.5](https://github.com/puntodev/mercadopago/compare/v7.0.4...v7.0.5) - 2026-10-11
 
